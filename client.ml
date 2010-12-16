@@ -4,46 +4,46 @@ let dom = Dom_html.document
 let js = Js.string
 let append_text e s = Dom.appendChild e (dom##createTextNode (js s))
 
-open Js
-
-type jstring = js_string t
-
-module type JQuery :
+module JQuery :
 sig
-  class type t = object
+  open Js
+
+  class type obj = object
     method get : int -> Dom.node t meth
-    method html : jstring meth
-    method html_set : jstring -> jQuery t meth
+    method html : js_string t meth
+    method html_set : js_string t -> obj t meth
     method length : int meth
   end
 
-  val obj : unit -> t
-  val selector : string -> t
-  val of_node : #Dom.node t -> t
+  val obj : unit -> obj t
+  val selector : string -> obj t
+  val of_node : #Dom.node t -> obj t
 end
 = 
 struct
-  class type t = object
+  open Js
+
+  class type obj = object
     method get : int -> Dom.node t meth
-    method html : jstring meth
-    method html_set : jstring -> jQuery t meth
+    method html : js_string t meth
+    method html_set : js_string t -> obj t meth
     method length : int meth
   end
 
-  let obj () : jQuery t = 
+  let obj () : obj t = 
     Unsafe.fun_call (Unsafe.variable "jQuery") [| |]
       
-  let selector selector : jQuery t =
+  let selector selector : obj t =
     Unsafe.fun_call (Unsafe.variable "jQuery") [| Unsafe.inject (js selector) |]
 
-  let of_node (dom : #Dom.node t) : jQuery t =
+  let of_node (dom : #Dom.node t) : obj t =
     Unsafe.fun_call (Unsafe.variable "jQuery") [| Unsafe.inject dom |]
 end 
 
 let onload _ =
-  Dom_html.window##alert ((jquery_sel "body")##html()) ;
-  (jquery_of_node (jquery_sel "body > p")##get(1))##html_set (js"biquette") ;
-  _false
+  Dom_html.window##alert ((JQuery.selector "body")##html()) ;
+  ignore ((JQuery.of_node (JQuery.selector "body > p")##get(1))##html_set (js"biquette")) ;
+  Js._false
   
   
 
