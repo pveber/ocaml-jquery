@@ -1,11 +1,8 @@
-core.cmo: tools.cmi core.cmi
-core.cmx: tools.cmx core.cmi
-examples/test.cmo: tools.cmi core.cmi
-examples/test.cmx: tools.cmx core.cmx
-jQuery.cmo: jQuery.cmi
-jQuery.cmx: jQuery.cmi
+examples/test.cmo: tools.cmi jQuery.cmi
+examples/test.cmx: tools.cmx jQuery.cmx
+jQuery.cmo: tools.cmi jQuery.cmi
+jQuery.cmx: tools.cmx jQuery.cmi
 tools.cmo: tools.cmi
 tools.cmx: tools.cmi
-core.cmi: tools.cmi
-jQuery.cmi:
+jQuery.cmi: tools.cmi
 tools.cmi:
