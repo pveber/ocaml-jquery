@@ -9,7 +9,7 @@ MLS=$(shell find * -name "*.ml")
 MLIS=$(shell find * -name "*.mli")
 OCAMLFIND=ocamlfind
 OCAMLDOC=ocamldoc
-CMOS=tools.cmo core.cmo
+CMOS=tools.cmo jQuery.cmo
 
 all: $(OQUERY)
 
