@@ -7,6 +7,7 @@
 *)
 
 open Js
+open Effects
 
 class type jQuery = object
   method add : js_string t -> jQuery t meth
@@ -22,8 +23,36 @@ class type jQuery = object
   method ajaxComplete : 
     (#Dom_html.event t -> #XmlHttpRequest.xmlHttpRequest t -> 'a) 
     -> jQuery t meth
+  method animate : Dom_html.cssStyleDeclaration t -> duration_pre 
+    -> easing_pre opt -> 'a callback t -> jQuery t
+  method clearQueue : js_string t opt -> jQuery t meth
   method css_get : js_string t -> js_string t meth
-  method css : js_string t -> js_string t -> jQuery meth
+  method css : js_string t -> js_string t -> jQuery t meth
+  method delay : int -> js_string t opt -> jQuery t meth
+  method dequeue : js_string t opt -> jQuery t meth
+  method fadeIn : duration_pre -> easing_pre opt -> 'a callback t opt 
+    -> jQuery t meth
+  method fadeOut : duration_pre -> easing_pre opt -> 'a callback t opt 
+    -> jQuery t meth
+  method fadeTo : duration_pre -> float -> easing_pre opt -> 'a callback t opt
+    -> jQuery t meth
+  method fadeToggle : duration_pre opt -> easing_pre opt -> 'a callback t opt
+    -> jQuery t meth
+  method hide : duration_pre opt -> easing_pre opt -> 'a callback t opt
+    -> jQuery t meth
+  method queue : js_string t opt -> js_string t js_array t meth
+  method show : duration_pre -> float -> easing_pre opt -> 'a callback t opt
+    -> jQuery t meth
+  method slideDown : duration_pre -> float -> easing_pre opt 
+    -> 'a callback t opt -> jQuery t meth
+  method slideToggle : duration_pre -> float -> easing_pre opt 
+    -> 'a callback t opt -> jQuery t meth
+  method slideUp : duration_pre -> float -> easing_pre opt -> 'a callback t opt
+    -> jQuery t meth
+  method stop : bool t opt -> bool t opt -> jQuery t meth
+  method toggle : bool t -> jQuery t meth
+  method toggle_ : duration_pre -> float -> easing_pre opt -> 'a callback t opt
+    -> jQuery t meth 
 end
 
 (** Construct the jQuery object i.e. "$" in jQuery **)

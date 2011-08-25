@@ -7,6 +7,7 @@
 *)
 
 open Js
+open Effects
 
 class type jQuery = object
   method add : js_string t -> jQuery t meth
@@ -22,8 +23,37 @@ class type jQuery = object
   method ajaxComplete : 
     (#Dom_html.event t -> #XmlHttpRequest.xmlHttpRequest t -> 'a) 
     -> jQuery t meth
+  method animate : Dom_html.cssStyleDeclaration t -> duration_pre 
+    -> easing_pre opt -> 'a callback t -> jQuery t
+  method clearQueue : js_string t opt -> jQuery t meth
   method css_get : js_string t -> js_string t meth
-  method css : js_string t -> js_string t -> jQuery meth
+  method css : js_string t -> js_string t -> jQuery t meth
+  method delay : int -> js_string t opt -> jQuery t meth
+  method dequeue : js_string t opt -> jQuery t meth
+  method fadeIn : duration_pre -> easing_pre opt -> 'a callback t opt 
+    -> jQuery t meth
+  method fadeOut : duration_pre -> easing_pre opt -> 'a callback t opt 
+    -> jQuery t meth
+  method fadeTo : duration_pre -> float -> easing_pre opt -> 'a callback t opt
+    -> jQuery t meth
+  method fadeToggle : duration_pre opt -> easing_pre opt -> 'a callback t opt
+    -> jQuery t meth
+  method hide : duration_pre opt -> easing_pre opt -> 'a callback t opt
+    -> jQuery t meth
+  method queue : js_string t opt -> js_string t js_array t meth
+  method show : duration_pre -> float -> easing_pre opt -> 'a callback t opt
+    -> jQuery t meth
+  method slideDown : duration_pre -> float -> easing_pre opt 
+    -> 'a callback t opt -> jQuery t meth
+  method slideToggle : duration_pre -> float -> easing_pre opt 
+    -> 'a callback t opt -> jQuery t meth
+  method slideUp : duration_pre -> float -> easing_pre opt -> 'a callback t opt
+    -> jQuery t meth
+  method stop : bool t opt -> bool t opt -> jQuery t meth
+  method toggle : bool t -> jQuery t meth
+  method toggle_ : duration_pre -> float -> easing_pre opt -> 'a callback t opt
+    -> jQuery t meth 
+
 (* TODO : implement the right types for these methods c.f. jQuery API
   method ajaxError
   method ajaxSend
@@ -31,7 +61,6 @@ class type jQuery = object
   method ajaxStop
   method ajaxSuccess
   method andSelf
-  method animate
   method append
   method appendTo
   method attr
@@ -40,27 +69,20 @@ class type jQuery = object
   method blur
   method change
   method children
-  method clearQueue
   method click
   method clone
   method closest
   method contents
-  method conte
+  method context
   method data
   method dblclick
-  method delay
   method delegate
-  method dequeue
   method die
   method each
   method empty
   method end_
   method eq
   method error
-  method fadeIn
-  method fadeOut
-  method fadeTo
-  method fadeToggle
   method filter
   method find
   method first
@@ -71,7 +93,6 @@ class type jQuery = object
   method has
   method hasClass
   method height
-  method hide
   method hover
   method html
   method index
@@ -118,7 +139,6 @@ class type jQuery = object
   method promise
   method prop
   method pushStack
-  method queue
   method ready
   method remove
   method removeAttr
@@ -134,19 +154,12 @@ class type jQuery = object
   method select
   method serialize
   method serializeArray
-  method show
   method siblings
   method size
   method slice
-  method slideDown
-  method slideToggle
-  method slideUp
-  method stop
   method submit
   method text
   method toArray
-  method toggle
-  method toggle
   method toggleClass
   method trigger
   method triggerHandler
@@ -165,10 +178,11 @@ let jQuery selector context_opt =
   Unsafe.variable "jQuery"
 
 let ajax : js_string t -> unit meth = Unsafe.variable "jQuery.ajax"
-(* TODO implement these values as in the jQuery API
+
+(* TODO implement these values as in the jQuery API *)
 let ajaxPrefilter = Unsafe.variable "jQuery.ajaxPrefilter"
 let ajaxSetup = Unsafe.variable "jQuery.ajaxSetup"
-let boxModel = Unsafae.varible "jQuery.boxModel"
+let boxModel = Unsafe.variable "jQuery.boxModel"
 let browser = Unsafe.variable "jQuery.browser"
 module Deferred = struct
   let always = Unsafe.variable "jQuery.deferred.always"
@@ -248,7 +262,7 @@ let removeData = Unsafe.variable "jQuery.removeData"
 let sub = Unsafe.variable "jQuery.sub"
 let suppo = Unsafe.variable "jQuery.suppo"
 let trim = Unsafe.variable "jQuery.trim"
-let type = Unsafe.variable "jQuery.type"
+let type_ = Unsafe.variable "jQuery.type"
 let unique = Unsafe.variable "jQuery.unique"
-let when = Unsafe.variable "jQuery.when"
-*)
+let when_ = Unsafe.variable "jQuery.when"
+
