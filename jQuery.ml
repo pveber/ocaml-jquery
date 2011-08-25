@@ -25,7 +25,9 @@ class type jQuery = object
     (#Dom_html.event t -> #XmlHttpRequest.xmlHttpRequest t -> 'a) callback
     -> jQuery t meth
   method animate : Dom_html.cssStyleDeclaration t -> duration_pre 
-    -> easing_pre opt -> 'a callback -> jQuery t
+    -> easing_pre opt -> 'a callback -> jQuery t meth
+  method blur : 'a callback opt -> jQuery t meth
+  method change : 'a callback opt -> jQuery t meth
   method clearQueue : js_string t opt -> jQuery t meth
   method css_get : js_string t -> js_string t meth
   method css : js_string t -> js_string t -> jQuery t meth
@@ -39,9 +41,12 @@ class type jQuery = object
     -> jQuery t meth
   method fadeToggle : duration_pre opt -> easing_pre opt -> 'a callback opt
     -> jQuery t meth
+  method focus : 'a callback opt -> jQuery t meth
   method hide : duration_pre opt -> easing_pre opt -> 'a callback opt
     -> jQuery t meth
   method queue : js_string t opt -> js_string t js_array t meth
+  method select : 'a callback opt -> jQuery t meth
+  method serialize : unit -> js_string meth
   method show : duration_pre -> float -> easing_pre opt -> 'a callback opt
     -> jQuery t meth
   method slideDown : duration_pre -> float -> easing_pre opt 
@@ -51,10 +56,11 @@ class type jQuery = object
   method slideUp : duration_pre -> float -> easing_pre opt -> 'a callback opt
     -> jQuery t meth
   method stop : bool t opt -> bool t opt -> jQuery t meth
+  method submit : 'a callback opt -> jQuery t meth
   method toggle : bool t -> jQuery t meth
   method toggle_ : duration_pre -> float -> easing_pre opt -> 'a callback opt
     -> jQuery t meth 
-
+  
 (* TODO : implement the right types for these methods c.f. jQuery API
   method ajaxError
   method ajaxSend
@@ -86,7 +92,6 @@ class type jQuery = object
   method filter
   method find
   method first
-  method focus
   method focusin
   method focusout
   method get
@@ -151,13 +156,10 @@ class type jQuery = object
   method scroll
   method scrollLeft
   method scrollTop
-  method select
-  method serialize
   method serializeArray
   method siblings
   method size
   method slice
-  method submit
   method text
   method toArray
   method toggleClass
@@ -177,10 +179,9 @@ end
 let jQuery selector context_opt =
   Unsafe.variable "jQuery"
 
-let ajax : js_string t -> unit meth = Unsafe.variable "jQuery.ajax"
-
+let ajax : js_string t -> unit = Unsafe.variable "jQuery.ajax"
 (* TODO implement these values as in the jQuery API *)
-let ajaxPrefilter = Unsafe.variable "jQuery.ajaxPrefilter"
+(*let ajaxPrefilter = Unsafe.variable "jQuery.ajaxPrefilter"
 let ajaxSetup = Unsafe.variable "jQuery.ajaxSetup"
 let boxModel = Unsafe.variable "jQuery.boxModel"
 let browser = Unsafe.variable "jQuery.browser"
@@ -251,9 +252,10 @@ let map = Unsafe.variable "jQuery.map"
 let merge = Unsafe.variable "jQuery.merge"
 let noConflict = Unsafe.variable "jQuery.noConflict"
 let noop = Unsafe.variable "jQuery.noop"
-let now = Unsafe.variable "jQuery.now"
-let param = Unsafe.variable "jQuery.param"
-let parseJSON = Unsafe.variable "jQuery.parseJSON"
+let now = Unsafe.variable "jQuery.now"*)
+let param : Unsafe.any t -> bool t opt -> js_string t = 
+  Unsafe.variable "jQuery.param"
+(*let parseJSON = Unsafe.variable "jQuery.parseJSON"
 let parseXML = Unsafe.variable "jQuery.parseXML"
 let post = Unsafe.variable "jQuery.post"
 let proxy = Unsafe.variable "jQuery.proxy"
@@ -265,4 +267,4 @@ let trim = Unsafe.variable "jQuery.trim"
 let type_ = Unsafe.variable "jQuery.type"
 let unique = Unsafe.variable "jQuery.unique"
 let when_ = Unsafe.variable "jQuery.when"
-
+*)
