@@ -14,7 +14,7 @@ class type jQuery = object
   method add_element : #Dom_html.element t -> jQuery t meth
   method add_jquery : jQuery t -> jQuery t meth
   method addClass : js_string t -> jQuery t meth
-  method addClass_fun : (int -> js_string t -> js_string t) callback 
+  method addClass_ : (int -> js_string t -> js_string t) callback 
     -> jQuery t meth
   method after : (js_string t, #Dom_html.element t, jQuery t) Tools.Choice3.t
     -> jQuery t meth
@@ -34,6 +34,7 @@ class type jQuery = object
   method css : js_string t -> js_string t -> jQuery t meth
   method delay : int -> js_string t opt -> jQuery t meth
   method dequeue : js_string t opt -> jQuery t meth
+  method each : (int -> #Dom_html.element t -> 'a) callback -> jQuery t meth
   method fadeIn : duration_pre opt -> easing_pre opt -> 'a callback opt 
     -> jQuery t meth
   method fadeOut : duration_pre opt -> easing_pre opt -> 'a callback opt 
@@ -43,9 +44,20 @@ class type jQuery = object
   method fadeToggle : duration_pre opt -> easing_pre opt -> 'a callback opt
     -> jQuery t meth
   method focus : 'a callback opt -> jQuery t meth
+  method has : js_string t -> jQuery t meth
+  method height : int meth
+  method height_set : int -> jQuery t meth
   method hide : duration_pre opt -> easing_pre opt -> 'a callback opt
     -> jQuery t meth
+  method hover : 'a callback -> 'a callback opt -> jQuery t meth
+  method html : js_string t meth 
+  method html_set : js_string t -> jQuery t meth
+  method live : Dom_html.event t -> 'a callback -> jQuery t meth
   method queue : js_string t opt -> js_string t js_array t meth
+  method ready : 'a callback -> jQuery t meth
+  method removeClass : js_string t opt -> jQuery t meth
+  method removeClass_ : (int -> js_string t -> js_string t) callback 
+    -> jQuery t meth
   method select : 'a callback opt -> jQuery t meth
   method serialize : unit -> js_string meth
   method show : duration_pre opt -> easing_pre opt -> 'a callback opt
@@ -61,7 +73,12 @@ class type jQuery = object
   method toggle : bool t -> jQuery t meth
   method toggle_ : duration_pre opt -> easing_pre opt -> 'a callback opt
     -> jQuery t meth 
-  method text : js_string t opt -> js_string t meth
+  method text : js_string t meth
+  method text_set : js_string t -> jQuery t meth
+  method val_ : string_array t meth
+  method val_set : js_string t -> jQuery t meth
+  method width : int meth
+  method width_set : int -> jQuery t meth
 end
 
 (** Easy way to call the jQuery object jQ "#foo" <=> $("#foo") **)
