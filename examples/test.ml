@@ -1,15 +1,16 @@
 open Js
 open JQuery
+open Effects
 
 module D = Dom_html
 let d = D.document
 
 let jss = Js.string
-let gebi s = Js.Opt.get (d##getElementById (Js.string s))
-    (fun () -> assert false)
+let jq s = jQuery (Tools.Choice4.i1 (jss s)) Js.null
 
-let x = jQuery (Tools.Choice4.i1 (jss "div.foo")) Js.null
-in x##css (jss "color", jss "red")
+let _ = (jq "div.foo")##css (jss "color", jss "red")
 
-let p = jQuery (Tools.Choice4.i1 (jss "p")) Js.null
-in p##add_element (gebi "toto")
+let _ = 
+  (jq "#clickme")##click (some (wrap_callback (fun _ ->
+    (jq "#square")##slideDown (some (of_duration Slow), null, null))))
+
