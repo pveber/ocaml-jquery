@@ -1,0 +1,11 @@
+effects.cmo: effects.cmi
+effects.cmx: effects.cmi
+examples/test.cmo: tools.cmi jQuery.cmi
+examples/test.cmx: tools.cmx jQuery.cmx
+jQuery.cmo: tools.cmi effects.cmi jQuery.cmi
+jQuery.cmx: tools.cmx effects.cmx jQuery.cmi
+tools.cmo: tools.cmi
+tools.cmx: tools.cmi
+effects.cmi:
+jQuery.cmi: tools.cmi effects.cmi
+tools.cmi:
