@@ -177,6 +177,9 @@ class type jQuery = object
   method wrapInner*)
 end
 
+let jQ s = Unsafe.fun_call 
+  (Unsafe.variable "jQuery") [|Unsafe.inject (Js.string s)|]
+
 let jQuery 
   (selector : (js_string t, 
 	       #Dom_html.element t, 

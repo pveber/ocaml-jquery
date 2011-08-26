@@ -64,11 +64,15 @@ class type jQuery = object
   method text : js_string t opt -> js_string t meth
 end
 
-(** Construct the jQuery object i.e. "$" in jQuery **)
+(** Easy way to call the jQuery object jQ "#foo" <=> $("#foo") **)
+val jQ : string -> jQuery t
+
+(** Call the jQuery object i.e. "$" in jQuery **)
 val jQuery : (js_string t, #Dom_html.element t, #Dom_html.element t js_array t,
 	      jQuery t) Tools.Choice4.t ->
               (#Dom_html.element t, #Dom_html.document, 
 	       jQuery t) Tools.Choice3.t opt -> jQuery t
+
 
 val ajax : js_string t -> unit
 val param : Unsafe.any t -> bool t opt -> js_string t
