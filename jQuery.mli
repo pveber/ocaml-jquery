@@ -1,9 +1,23 @@
 (*
-  JQuery binding for Js_of_ocaml - 2011
-  
-  jQuery module
-
-  @author : Gabriel Cardoso
+ * JQuery binding for Js_of_ocaml - 2011-2012  
+ * jQuery module
+ *
+ * 2011 Gabriel Cardoso - gcardoso.w@gmail.com
+ * 2012 Cagdas Bozman - cagdas.bozman@ocamlpro.com
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, with linking exception;
+ * either version 2.1 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 *)
 
 open Js
@@ -26,6 +40,7 @@ class type jQuery = object
     -> jQuery t meth
   method animate : Dom_html.cssStyleDeclaration t -> duration_pre opt 
     -> easing_pre opt -> 'a callback opt -> jQuery t meth
+  method append : js_string t -> unit meth
   method blur : 'a callback opt -> jQuery t meth
   method change : 'a callback opt -> jQuery t meth
   method clearQueue : js_string t opt -> jQuery t meth
@@ -35,6 +50,7 @@ class type jQuery = object
   method delay : int -> js_string t opt -> jQuery t meth
   method dequeue : js_string t opt -> jQuery t meth
   method each : (int -> #Dom_html.element t -> 'a) callback -> jQuery t meth
+  method eq : int -> jQuery t meth
   method fadeIn : duration_pre opt -> easing_pre opt -> 'a callback opt 
     -> jQuery t meth
   method fadeOut : duration_pre opt -> easing_pre opt -> 'a callback opt 
@@ -43,6 +59,7 @@ class type jQuery = object
     -> jQuery t meth
   method fadeToggle : duration_pre opt -> easing_pre opt -> 'a callback opt
     -> jQuery t meth
+  method find : jQuery t -> jQuery t meth
   method focus : 'a callback opt -> jQuery t meth
   method has : js_string t -> jQuery t meth
   method height : int meth
@@ -52,6 +69,7 @@ class type jQuery = object
   method hover : 'a callback -> 'a callback opt -> jQuery t meth
   method html : js_string t meth 
   method html_set : js_string t -> jQuery t meth
+  method length : int readonly_prop
   method live : Dom_html.event t -> 'a callback -> jQuery t meth
   method queue : js_string t opt -> js_string t js_array t meth
   method ready : 'a callback -> jQuery t meth
