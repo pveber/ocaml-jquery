@@ -62,6 +62,7 @@ class type jQuery = object
   method find : jQuery t -> jQuery t meth
   method focus : 'a callback opt -> jQuery t meth
   method has : js_string t -> jQuery t meth
+  method hasClass : js_string t -> bool t meth
   method height : int meth
   method height_set : int -> jQuery t meth
   method hide : duration_pre opt -> easing_pre opt -> 'a callback opt
