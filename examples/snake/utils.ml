@@ -2,6 +2,7 @@
  * Utils module from https://github.com/OCamlPro/tryocaml/blob/master/ocp-jslib/utils.ml
  * http://www.ocamlpro.com - OCamlPro SAS
  *
+ * (C) 2012 Fabrice Le Fessant - fabrice.le_fessant@inria.fr
  * (C) 2012 Cagdas Bozman - cagdas.bozman@ocamlpro.com
  *
  * This program is free software; you can redistribute it and/or modify
