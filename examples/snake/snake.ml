@@ -107,7 +107,6 @@ and update_snake_cell () =
       | "down"  ->
           snake_new_head := (fst !snake_head) + 1, snd !snake_head
       | _ -> () in
-  (* let new_cell = {length : 0} in *)
   let () =
     if fst !snake_new_head < 0 || snd !snake_new_head < 0 then
       game_over ()
