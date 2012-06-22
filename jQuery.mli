@@ -41,6 +41,7 @@ class type jQuery = object
   method animate : Dom_html.cssStyleDeclaration t -> duration_pre opt 
     -> easing_pre opt -> 'a callback opt -> jQuery t meth
   method append : js_string t -> unit meth
+  method attr : js_string t -> js_string t meth
   method blur : 'a callback opt -> jQuery t meth
   method change : 'a callback opt -> jQuery t meth
   method clearQueue : js_string t opt -> jQuery t meth
@@ -71,9 +72,11 @@ class type jQuery = object
   method html : js_string t meth 
   method html_set : js_string t -> jQuery t meth
   method length : int readonly_prop
-  method live : Dom_html.event t -> 'a callback -> jQuery t meth
+  method live : 'a Dom.Event.typ -> 'a callback -> jQuery t meth
+  method prepend : js_string t -> unit meth
   method queue : js_string t opt -> js_string t js_array t meth
   method ready : 'a callback -> jQuery t meth
+  method remove : unit meth
   method removeClass : js_string t opt -> jQuery t meth
   method removeClass_ : (int -> js_string t -> js_string t) callback 
     -> jQuery t meth
@@ -98,6 +101,8 @@ class type jQuery = object
   method val_set : js_string t -> jQuery t meth
   method width : int meth
   method width_set : int -> jQuery t meth
+  method tableFilter : unit meth
+  method tableFilterApplyFilterValues : unit meth
 end
 
 (** Easy way to call the jQuery object jQ "#foo" <=> $("#foo") **)

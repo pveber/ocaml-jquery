@@ -44,4 +44,6 @@ clean:
 	@echo "[CLEAN]"
 	-rm -f $(OQUERY)
 	-find . -name "*.cm[oix]" -exec rm {} \;
+	-find . -name "*.cm[t]" -exec rm {} \;
+	-find . -name "*.cmt[i]" -exec rm {} \;
 	${MAKE} -C examples clean
