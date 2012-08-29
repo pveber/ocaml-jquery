@@ -40,8 +40,14 @@ class type jQuery = object
     -> jQuery t meth
   method animate : Dom_html.cssStyleDeclaration t -> duration_pre opt 
     -> easing_pre opt -> 'a callback opt -> jQuery t meth
-  method append : js_string t -> unit meth
+  method append : js_string t -> jQuery t meth
+  method appendTo : js_string t -> jQuery t meth
+  method appendTo_jquery : jQuery t -> jQuery t meth
   method attr : js_string t -> js_string t meth
+  method attr_set : js_string t -> js_string t -> jQuery t meth
+  method before : (js_string t, #Dom_html.element t, jQuery t) Tools.Choice3.t
+    -> jQuery t meth
+  method bind : js_string t -> 'a callback opt -> jQuery t meth
   method blur : 'a callback opt -> jQuery t meth
   method change : 'a callback opt -> jQuery t meth
   method clearQueue : js_string t opt -> jQuery t meth
@@ -71,6 +77,10 @@ class type jQuery = object
   method hover : 'a callback -> 'a callback opt -> jQuery t meth
   method html : js_string t meth 
   method html_set : js_string t -> jQuery t meth
+  method insertAfter : (js_string t, #Dom_html.element t, jQuery t)
+    Tools.Choice3.t -> jQuery t meth
+  method insertBefore : (js_string t, #Dom_html.element t, jQuery t)
+    Tools.Choice3.t -> jQuery t meth
   method length : int readonly_prop
   method live : 'a Dom.Event.typ-> 'a callback -> jQuery t meth
   method prepend : js_string t -> unit meth
@@ -97,6 +107,7 @@ class type jQuery = object
     -> jQuery t meth 
   method text : js_string t meth
   method text_set : js_string t -> jQuery t meth
+  method unbind : js_string t -> jQuery t meth
   method val_ : string_array t meth
   method val_set : js_string t -> jQuery t meth
   method width : int meth
@@ -104,7 +115,7 @@ class type jQuery = object
   method tableFilter : unit meth
   method tableFilterApplyFilterValues : unit meth
 
-  
+
 (* TODO : implement the right types for these methods c.f. jQuery API
   method ajaxError
   method ajaxSend
@@ -112,9 +123,6 @@ class type jQuery = object
   method ajaxStop
   method ajaxSuccess
   method andSelf
-  method appendTo
-  method before
-  method bind
   method change
   method children
   method click
@@ -142,8 +150,6 @@ class type jQuery = object
   method index
   method innerHeight
   method innerWidth
-  method insertAfter
-  method insertBefore
   method is
   method jquery
   method keydown
@@ -199,7 +205,6 @@ class type jQuery = object
   method toggleClass
   method trigger
   method triggerHandler
-  method unbind
   method undelegate
   method unload
   method unwrap
