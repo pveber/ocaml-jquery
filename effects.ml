@@ -22,12 +22,12 @@
 open Js
 
 type duration = Value of int | Slow | Fast
-type duration_pre = Name of js_string t | ValueP of int
+type duration_pre
 
 let of_duration = function
-  | Value i -> ValueP i
-  | Slow -> Name (Js.string "slow")
-  | Fast -> Name (Js.string "fast")
+  | Value i -> (Obj.magic i : duration_pre)
+  | Slow -> (Obj.magic (Js.string "slow") : duration_pre)
+  | Fast -> (Obj.magic (Js.string "fast") : duration_pre)
 
 type easing = 
   | Def
