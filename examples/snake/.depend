@@ -1,0 +1,4 @@
+utils.cmo: utils.cmi
+utils.cmx: utils.cmi
+snake.cmo: utils.cmi ../../jQuery.cmi ../../effects.cmi
+snake.cmx: utils.cmx ../../jQuery.cmx ../../effects.cmx
