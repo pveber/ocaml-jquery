@@ -94,6 +94,7 @@ class type jQuery = object
   method serialize : unit -> js_string meth
   method show : duration_pre opt -> easing_pre opt -> 'a callback opt
     -> jQuery t meth
+  method size : int meth
   method slideDown : duration_pre opt -> easing_pre opt -> 'a callback opt 
     -> jQuery t meth
   method slideToggle : duration_pre opt -> easing_pre opt -> 'a callback opt 
