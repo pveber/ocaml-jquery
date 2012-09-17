@@ -10,5 +10,6 @@ let _ = (jQ "div.foo")##css (jss "color", jss "red")
 
 let _ = 
   (jQ "#clickme")##click (some (wrap_callback (fun _ ->
-    (jQ "#square")##slideDown (some (of_duration Slow), null, null))))
+    (jQ "#square")##slideDown (some (of_duration Slow), null, some (wrap_callback (fun _ -> 
+      Dom_html.window##alert(Js.string "Done sliding")))))))
 
