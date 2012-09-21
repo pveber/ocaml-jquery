@@ -43,7 +43,7 @@ class type jQuery = object
   method append : js_string t -> jQuery t meth
   method appendTo : js_string t -> jQuery t meth
   method appendTo_jquery : jQuery t -> jQuery t meth
-  method attr : js_string t -> js_string t meth
+  method attr : js_string t -> js_string t optdef meth
   method attr_set : js_string t -> js_string t -> jQuery t meth
   method before : (js_string t, #Dom_html.element t, jQuery t) Tools.Choice3.t
     -> jQuery t meth
