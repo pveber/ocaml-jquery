@@ -105,7 +105,8 @@ class type jQuery = object
   method submit : 'a callback opt -> jQuery t meth
   method toggle : bool t -> jQuery t meth
   method toggle_ : duration_pre opt -> easing_pre opt -> 'a callback opt
-    -> jQuery t meth 
+    -> jQuery t meth
+  method toggleClass : js_string t -> jQuery t meth
   method text : js_string t meth
   method text_set : js_string t -> jQuery t meth
   method unbind : js_string t -> jQuery t meth
@@ -203,7 +204,6 @@ class type jQuery = object
   method size
   method slice
   method toArray
-  method toggleClass
   method trigger
   method triggerHandler
   method undelegate

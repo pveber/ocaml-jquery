@@ -104,6 +104,7 @@ class type jQuery = object
   method stop : bool t opt -> bool t opt -> jQuery t meth
   method submit : 'a callback opt -> jQuery t meth
   method toggle : bool t -> jQuery t meth
+  method toggleClass : js_string t -> jQuery t meth
   method toggle_ : duration_pre opt -> easing_pre opt -> 'a callback opt
     -> jQuery t meth 
   method text : js_string t meth
