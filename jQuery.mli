@@ -39,64 +39,77 @@ class type jQuery = object
     (#Dom_html.event t -> #XmlHttpRequest.xmlHttpRequest t -> 'a) callback
     -> jQuery t meth
   method animate : Dom_html.cssStyleDeclaration t -> duration_pre opt 
-    -> easing_pre opt -> 'a callback opt -> jQuery t meth
-  method append : js_string t -> unit meth
-  method attr : js_string t -> js_string t meth
-  method blur : 'a callback opt -> jQuery t meth
-  method change : 'a callback opt -> jQuery t meth
+    -> easing_pre opt -> ('a, 'b) meth_callback opt -> jQuery t meth
+  method append : js_string t -> jQuery t meth
+  method appendTo : js_string t -> jQuery t meth
+  method appendTo_jquery : jQuery t -> jQuery t meth
+  method attr : js_string t -> js_string t optdef meth
+  method attr_set : js_string t -> js_string t -> jQuery t meth
+  method before : (js_string t, #Dom_html.element t, jQuery t) Tools.Choice3.t
+    -> jQuery t meth
+  method bind : js_string t -> ('a, 'b) meth_callback opt -> jQuery t meth
+  method blur : ('a, 'b) meth_callback opt -> jQuery t meth
+  method change : ('a, 'b) meth_callback opt -> jQuery t meth
   method clearQueue : js_string t opt -> jQuery t meth
-  method click : 'a callback opt -> jQuery t meth
+  method click : ('a, 'b) meth_callback opt -> jQuery t meth
   method css_get : js_string t -> js_string t meth
   method css : js_string t -> js_string t -> jQuery t meth
   method delay : int -> js_string t opt -> jQuery t meth
   method dequeue : js_string t opt -> jQuery t meth
   method each : (int -> #Dom_html.element t -> 'a) callback -> jQuery t meth
   method eq : int -> jQuery t meth
-  method fadeIn : duration_pre opt -> easing_pre opt -> 'a callback opt 
+  method fadeIn : duration_pre opt -> easing_pre opt -> ('a, 'b) meth_callback opt
     -> jQuery t meth
-  method fadeOut : duration_pre opt -> easing_pre opt -> 'a callback opt 
+  method fadeOut : duration_pre opt -> easing_pre opt -> ('a, 'b) meth_callback opt
     -> jQuery t meth
-  method fadeTo : duration_pre opt -> easing_pre opt -> 'a callback opt
+  method fadeTo : duration_pre opt -> easing_pre opt -> ('a, 'b) meth_callback opt
     -> jQuery t meth
-  method fadeToggle : duration_pre opt -> easing_pre opt -> 'a callback opt
+  method fadeToggle : duration_pre opt -> easing_pre opt -> ('a, 'b) meth_callback opt
     -> jQuery t meth
   method find : jQuery t -> jQuery t meth
-  method focus : 'a callback opt -> jQuery t meth
+  method focus : ('a, 'b) meth_callback opt -> jQuery t meth
   method has : js_string t -> jQuery t meth
   method hasClass : js_string t -> bool t meth
   method height : int meth
   method height_set : int -> jQuery t meth
-  method hide : duration_pre opt -> easing_pre opt -> 'a callback opt
+  method hide : duration_pre opt -> easing_pre opt -> ('a, 'b) meth_callback opt
     -> jQuery t meth
-  method hover : 'a callback -> 'a callback opt -> jQuery t meth
+  method hover : ('a, 'b) meth_callback -> ('a, 'b) meth_callback opt -> jQuery t meth
   method html : js_string t meth 
   method html_set : js_string t -> jQuery t meth
+  method insertAfter : (js_string t, #Dom_html.element t, jQuery t)
+    Tools.Choice3.t -> jQuery t meth
+  method insertBefore : (js_string t, #Dom_html.element t, jQuery t)
+    Tools.Choice3.t -> jQuery t meth
   method length : int readonly_prop
-  method live : 'a Dom.Event.typ -> 'a callback -> jQuery t meth
+  method live : 'a Dom.Event.typ -> ('a, 'b) meth_callback -> jQuery t meth
   method prepend : js_string t -> unit meth
   method queue : js_string t opt -> js_string t js_array t meth
-  method ready : 'a callback -> jQuery t meth
+  method ready : ('a, 'b) meth_callback -> jQuery t meth
   method remove : unit meth
   method removeClass : js_string t opt -> jQuery t meth
   method removeClass_ : (int -> js_string t -> js_string t) callback 
     -> jQuery t meth
-  method select : 'a callback opt -> jQuery t meth
+  method select : ('a, 'b) meth_callback opt -> jQuery t meth
   method serialize : unit -> js_string meth
-  method show : duration_pre opt -> easing_pre opt -> 'a callback opt
+  method show : duration_pre opt -> easing_pre opt -> ('a, 'b) meth_callback opt
     -> jQuery t meth
-  method slideDown : duration_pre opt -> easing_pre opt -> 'a callback opt 
+  method size : int meth
+  method slideDown : duration_pre opt -> easing_pre opt -> ('a, 'b) meth_callback opt
     -> jQuery t meth
-  method slideToggle : duration_pre opt -> easing_pre opt -> 'a callback opt 
+  method slideToggle : duration_pre opt -> easing_pre opt -> ('a, 'b) meth_callback opt
     -> jQuery t meth
-  method slideUp : duration_pre opt -> easing_pre opt -> 'a callback opt
+  method slideUp : duration_pre opt -> easing_pre opt -> ('a, 'b) meth_callback opt
     -> jQuery t meth
   method stop : bool t opt -> bool t opt -> jQuery t meth
-  method submit : 'a callback opt -> jQuery t meth
+  method submit : ('a, 'b) meth_callback opt -> jQuery t meth
   method toggle : bool t -> jQuery t meth
-  method toggle_ : duration_pre opt -> easing_pre opt -> 'a callback opt
-    -> jQuery t meth 
+  method toggleClass : js_string t -> jQuery t meth
+  method toggle_ : duration_pre opt -> easing_pre opt -> ('a, 'b) meth_callback opt
+    -> jQuery t meth
   method text : js_string t meth
   method text_set : js_string t -> jQuery t meth
+  method unbind : js_string t -> jQuery t meth
   method val_ : string_array t meth
   method val_set : js_string t -> jQuery t meth
   method width : int meth
