@@ -10,6 +10,7 @@ MLIS=$(shell find * -name "*.mli")
 OCAMLFIND=ocamlfind
 OCAMLDOC=ocamldoc
 CMOS=tools.cmo effects.cmo jQuery.cmo
+CMIS=tools.cmi effects.cmi jQuery.cmi
 
 all: $(OQUERY)
 
@@ -47,3 +48,9 @@ clean:
 	-find . -name "*.cm[t]" -exec rm {} \;
 	-find . -name "*.cmt[i]" -exec rm {} \;
 	${MAKE} -C examples clean
+
+install:
+	ocamlfind install jquery META oquery.cma $(CMIS) $(MLIS)
+
+uninstall:
+	ocamlfind remove jquery

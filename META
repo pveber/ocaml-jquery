@@ -1,0 +1,5 @@
+version = "0.1"
+description = "Js_of_ocaml bindings for jQuery"
+archive(byte) = "oquery.cma"
+archive(byte, plugin) = "oquery.cma"
+exists_if = "oquery.cma"
